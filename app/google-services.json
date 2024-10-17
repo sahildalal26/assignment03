@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "477586102164",
+    "project_id": "listofgames-e4c7f",
+    "storage_bucket": "listofgames-e4c7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477586102164:android:2eef8956feaf16f127e181",
+        "android_client_info": {
+          "package_name": "com.example.assignment3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB58mhKluz-cD2j8KgIsHCZ3Qfg9up31A8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

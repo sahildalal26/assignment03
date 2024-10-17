@@ -1,25 +1,50 @@
-// GameViewModel.kt
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.test.core.app.ApplicationProvider
-import kotlinx.coroutines.launch
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class GameViewModel : ViewModel() {
+    private val database: DatabaseReference = FirebaseDatabase.getInstance().reference.child("games")
+    private val _games = MutableLiveData<List<Game>>()
+    val games: LiveData<List<Game>> get() = _games
 
-    private val gameDao: GameDao = GameDatabase.getDatabase(ApplicationProvider.getApplicationContext()).gameDao()
-
-    fun insertGame(game: Game) {
-        viewModelScope.launch {
-            gameDao.insert(game)
-        }
+    init {
+        fetchGames()
     }
 
-    suspend fun getAllGames(): List<Game> {
-        return gameDao.getAllGames()
+    private fun fetchGames() {
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val gamesList = mutableListOf<Game>()
+                for (gameSnapshot in snapshot.children) {
+                    val game = gameSnapshot.getValue(Game::class.java)
+                    if (game != null) {
+                        gamesList.add(game)
+                    }
+                }
+                _games.value = gamesList
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("GameViewModel", "Failed to read games.", error.toException())
+            }
+        })
     }
 
-    fun updateGame(game: Game) {
-        viewModelScope.launch {  }
+    fun addGame(game: Game) {
+        database.push().setValue(game)
     }
 
+    fun updateGame(gameId: String, game: Game) {
+        database.child(gameId).setValue(game)
+    }
+
+    fun deleteGame(gameId: String) {
+        database.child(gameId).removeValue()
+    }
 }
