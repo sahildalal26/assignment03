@@ -9,15 +9,40 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-    <ProgressBar
-        android:id="@+id/ratingProgressBar"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/editIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Edit"
+            android:src="@drawable/edit"
+            android:layout_marginEnd="16dp"/>
+
+        <ImageView
+            android:id="@+id/deleteIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Delete"
+            android:src="@drawable/delete" />
+    </LinearLayout>
+
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:max="5"
-        style="?android:attr/progressBarStyleHorizontal" />
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="1"
+        android:isIndicator="true" />
 
     <TextView
         android:id="@+id/downloadsTextView"

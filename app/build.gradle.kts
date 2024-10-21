@@ -82,6 +82,12 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore)
 
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.mockito.kotlin)
+
+    // Coroutines Test for testing Kotlin coroutines
+    testImplementation(libs.coroutines.test)
 
 
 

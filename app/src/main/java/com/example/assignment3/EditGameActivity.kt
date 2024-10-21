@@ -1,4 +1,3 @@
-// EditGameActivity.kt
 package com.example.assignment3
 
 import Game

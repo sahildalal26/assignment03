@@ -13,17 +13,6 @@
         android:layout_height="wrap_content"
         android:text="Add Game" />
 
-    <Button
-        android:id="@+id/buttonEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Game" />
-
-    <Button
-        android:id="@+id/buttonDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete Game" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
